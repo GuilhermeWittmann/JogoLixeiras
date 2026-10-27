@@ -14,4 +14,15 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches the game at the GitHub Pages repository basepath", () => {
+    const router = createRouter({
+      routeTree,
+      basepath: "/JogoLixeiras/",
+      context: { queryClient: new QueryClient() },
+    });
+
+    expect(router.matchRoutes("/JogoLixeiras/").at(-1)?.routeId).toBe("/");
+    expect(router.buildLocation({ to: "/" }).href).toBe("/JogoLixeiras/");
+  });
 });
