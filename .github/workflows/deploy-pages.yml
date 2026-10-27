@@ -33,7 +33,7 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Build and verify static site
-        run: bun run build:pages
+        run: bun run build
       - name: Upload static site only
         uses: actions/upload-pages-artifact@v3
         with:
