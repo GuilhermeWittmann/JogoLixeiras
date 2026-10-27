@@ -1,29 +1,35 @@
-# Welcome to your Lovable project
+# Lixo no Lugar Certo ♻️
 
-This project was built with [Lovable](https://lovable.dev).
+> Cada lixo tem seu lugar. Descubra o certo!
 
-## Build with Lovable
+Jogo educativo sobre coleta seletiva para estudantes do Ensino Médio.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Tecnologias
+React 19, TypeScript, TanStack Start/Router, Vite, Tailwind CSS v4 e Vitest.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Estrutura
+- `src/game/data.ts` — lixeiras e os 24 resíduos
+- `src/game/logic.ts` — sorteio (1 por categoria + 4 extras, Fisher–Yates), pontuação e mensagens
+- `src/components/game/` — telas `StartScreen`, `PlayScreen`, `ResultScreen` e o gerenciador `Game`
+- `src/styles.css` — sistema de design (cores das lixeiras, botões, animações)
+- `src/test/` — testes das regras
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+## Executar localmente
+```bash
+bun install   # ou npm install
+bun run dev   # http://localhost:8080
 ```
 
-## Built with
+## Testar
+```bash
+bunx vitest run
+```
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Produção
+```bash
+bun run build
+```
+
+## Publicar
+O jogo não usa backend, login nem dados pessoais. A forma mais simples é o botão **Publish** do Lovable.
+Para o GitHub Pages, é preciso gerar uma versão estática (pré-renderização do TanStack Start, com `base` igual ao nome do repositório) e publicar a pasta gerada pelo GitHub Actions (`actions/deploy-pages`).
