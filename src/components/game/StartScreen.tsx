@@ -58,4 +58,7 @@ export function StartScreen({ onPlay }: { onPlay: () => void }) {
       </section>
     </div>
   );
+  <div className="mt-8 pb-4 text-center text-sm text-muted-foreground">
+  Desenvolvido por: Guilherme Wittmann, Ana Hennig e Nicoly Leonardi
+</div>
 }
