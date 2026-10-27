@@ -5,11 +5,28 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import type { ConfigEnv } from "vite";
 
-export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
-});
+// Resolve wrapper options before calling defineConfig: its callback overload
+// accepts Vite options, not Lovable/TanStack wrapper options.
+export default (env: ConfigEnv) => {
+  const pages = env.command === "build" && env.mode !== "development";
+
+  return defineConfig({
+    vite: { base: pages ? "/JogoLixeiras/" : "/" },
+    nitro: pages ? false : undefined,
+    tanstackStart: {
+      server: { entry: "server" },
+      ...(pages ? {
+        router: { basepath: "/JogoLixeiras" },
+        pages: [{ path: "/" }],
+        prerender: {
+          enabled: true,
+          autoStaticPathsDiscovery: false,
+          crawlLinks: false,
+          failOnError: true,
+        },
+      } : {}),
+    },
+  })(env);
+};
