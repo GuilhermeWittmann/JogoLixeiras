@@ -22,7 +22,7 @@ describe("App routing", () => {
       context: { queryClient: new QueryClient() },
     });
 
-    expect(router.matchRoutes("/JogoLixeiras/").at(-1)?.routeId).toBe("/");
+    expect(router.matchRoutes("/").at(-1)?.routeId).toBe("/");
     expect(router.buildLocation({ to: "/" }).href).toBe("/JogoLixeiras/");
   });
 });
