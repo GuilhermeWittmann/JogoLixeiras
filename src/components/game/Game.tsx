@@ -26,7 +26,7 @@ export function Game() {
   const item = round[index];
   const answer = item && answers.find((a) => a.itemId === item.id);
 
-  const onAnswer = (bin: BinId) => setAnswers((prev) => recordAnswer(prev, item, bin));
+  const onAnswer = (bin: BinId) => setAnswers((prev) => item ? recordAnswer(prev, item, bin) : prev);
   const onNext = () => {
     if (!answer) return;
     if (index === round.length - 1) setScreen("result");

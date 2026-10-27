@@ -6,7 +6,7 @@ interface Props {
   item: WasteItem;
   index: number;
   score: number;
-  answer?: Answer;
+  answer?: Answer | undefined;
   onAnswer: (bin: BinId) => void;
   onNext: () => void;
 }

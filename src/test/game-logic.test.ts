@@ -21,7 +21,7 @@ describe("regras do jogo", () => {
     expect(b.map((i) => i.id).sort().join()).not.toBe(a.map((i) => i.id).sort().join());
   });
   it("acerto soma 10, erro não pontua, sem duplicidade", () => {
-    const banana = ITEMS[16];
+    const banana = ITEMS[16]!;
     let ans = recordAnswer([], banana, "marrom");
     expect(scoreOf(ans)).toBe(10);
     ans = recordAnswer(ans, banana, "marrom");

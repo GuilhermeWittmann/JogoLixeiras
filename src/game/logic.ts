@@ -7,7 +7,7 @@ export function shuffle<T>(arr: T[], rand: () => number = Math.random): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    const t = a[i]!; a[i] = a[j]!; a[j] = t;
   }
   return a;
 }
@@ -16,7 +16,7 @@ export function drawRound(rand: () => number = Math.random, items: WasteItem[] =
   const picked: WasteItem[] = [];
   for (const bin of BINS) {
     const group = items.filter((i) => i.bin === bin.id);
-    picked.push(group[Math.floor(rand() * group.length)]);
+    picked.push(group[Math.floor(rand() * group.length)]!);
   }
   const rest = items.filter((i) => !picked.includes(i));
   picked.push(...shuffle(rest, rand).slice(0, ROUND_SIZE - BINS.length));
